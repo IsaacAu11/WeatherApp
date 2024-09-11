@@ -13,9 +13,11 @@ function App() {
           <img src={weatherImage} alt='Cloud' className='w-60 h-60'></img>
           <p className='mb-5 font-inria text-gray-500'>Welcome to Simple Weather</p>
           <div className='relative'>
-            <button className='w-8 h-6 absolute'></button>
-            <img src={searchIcon} alt="search" className='w-5 h-5 absolute left-2 bottom-1 top-1'/>
-            {/*<img src={weatherIcon} alt="Search"className='w-5 h-5 absolute left-2 bottom-2 top-1'/>*/}
+          <img src={searchIcon} alt='search' className='absolute left-2 top-1 w-5 h-5 z-10' />
+            <button
+              className='absolute left-1 top-0 w-8 h-7 z-20'
+              onClick={() => alert('Button Clicked')}>
+            </button>
             <input type="text" placeholder='Enter your city' className='border-2 rounded-md pl-9 w-96 text-gray-500'/> 
           </div>
         </div>
