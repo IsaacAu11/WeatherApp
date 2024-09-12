@@ -1,10 +1,17 @@
 import searchIcon from '/Images/search.png';
 import weatherImage from '/Images/clouds-and-sun.png';
+import { useState } from 'react';
 
 export default function StartPage({updateWeatherPage}) {
 
+    const [val,setVal] = useState("")
+
     const handleWeatherClick = () => {
         updateWeatherPage()
+    }
+
+    const handlerFunction = () =>{
+        {handleWeatherClick()}
     }
 
   return (
@@ -19,7 +26,20 @@ export default function StartPage({updateWeatherPage}) {
                 onClick={() => handleWeatherClick()}
                 >
                 </button>
-                <input type="text" placeholder='Enter your city' className='border-2 rounded-md pl-9 w-96 text-gray-500' />
+                <input 
+                type="text" 
+                placeholder='Enter your city' 
+                className='border-2 rounded-md pl-9 w-96 text-gray-500' 
+                value={val}
+                onChange={e => {
+                    setVal(e.target.value)
+                    console.log(val)
+                }}
+                onKeyDown={(e) => {
+                    if(e.key === "Enter"){
+                        handlerFunction();
+                    }
+                }}/>
             </div>
         </div>
     </div>
