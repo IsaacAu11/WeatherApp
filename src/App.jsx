@@ -1,5 +1,5 @@
-import StartPage from "./components/startPage";
-import WeatherPage from "./components/weatherPage";
+import StartPage from"./components/Start.jsx"
+import WeatherPage from "./components/Weather.jsx";
 import { useState } from "react";
 
 function App() {
