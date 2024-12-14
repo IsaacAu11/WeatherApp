@@ -1,9 +1,11 @@
-import StartPage from"./components/Start.jsx"
+// App.jsx
+import React, { useState } from 'react';
+import StartPage from "./components/Start.jsx";
 import WeatherPage from "./components/Weather.jsx";
-import { useState } from "react";
 
 function App() {
   const [showWeatherPage, setShowWeatherPage] = useState(false);
+  const [city, setCity] = useState(''); // State to hold the city name
 
   function updateWeatherPage() {
     setShowWeatherPage(!showWeatherPage);
@@ -12,9 +14,9 @@ function App() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600">
       {showWeatherPage ? (
-        <WeatherPage />
+        <WeatherPage city={city} /> 
       ) : (
-        <StartPage updateWeatherPage={updateWeatherPage} />
+        <StartPage updateWeatherPage={updateWeatherPage} setCity={setCity} /> 
       )}
     </div>
   );

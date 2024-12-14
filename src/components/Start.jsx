@@ -1,18 +1,14 @@
+// Start.jsx
 import searchIcon from "/Images/search.png";
 import weatherImage from "/Images/clouds-and-sun.png";
 import { useState } from "react";
 
-export default function StartPage({ updateWeatherPage }) {
+export default function StartPage({ updateWeatherPage, setCity }) {
   const [val, setVal] = useState("");
 
   const handleWeatherClick = () => {
-    updateWeatherPage();
-  };
-
-  const handlerFunction = () => {
-    {
-      handleWeatherClick();
-    }
+    setCity(val); // Set the city state in the parent
+    updateWeatherPage(); // Update the weather page
   };
 
   return (
@@ -30,7 +26,7 @@ export default function StartPage({ updateWeatherPage }) {
           />
           <button
             className="absolute left-1 top-0 w-8 h-7 z-20"
-            onClick={() => handleWeatherClick()}
+            onClick={handleWeatherClick}
           ></button>
           <input
             type="text"
@@ -39,11 +35,10 @@ export default function StartPage({ updateWeatherPage }) {
             value={val}
             onChange={(e) => {
               setVal(e.target.value);
-              console.log(val);
             }}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                handlerFunction();
+                handleWeatherClick(); // Call the function to set city and update weather page
               }
             }}
           />
