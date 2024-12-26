@@ -4,15 +4,10 @@ import { useState } from "react";
 
 export default function StartPage({ updateWeatherPage }) {
   const [val, setVal] = useState("");
+  const [data, setData] = useState([]);
 
   const handleWeatherClick = () => {
     updateWeatherPage();
-  };
-
-  const handlerFunction = () => {
-    {
-      handleWeatherClick();
-    }
   };
 
   return (
@@ -30,7 +25,7 @@ export default function StartPage({ updateWeatherPage }) {
           />
           <button
             className="absolute left-1 top-0 w-8 h-7 z-20"
-            onClick={() => handleWeatherClick()}
+            onClick={() => getWeatherData(val)}
           ></button>
           <input
             type="text"
@@ -43,7 +38,7 @@ export default function StartPage({ updateWeatherPage }) {
             }}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                handlerFunction();
+                getWeatherData(val);
               }
             }}
           />
@@ -51,4 +46,25 @@ export default function StartPage({ updateWeatherPage }) {
       </div>
     </div>
   );
+
+  function getWeatherData(city) {
+    const apiKey = `30f23130ada3d69eb69956b07a6fce2b`;
+    const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&country=GB&limit=3&appid=${apiKey}`
+  
+    fetch(url)
+      .then( response =>{
+        console.log('Response: ',response);
+        response.json()
+      }
+      ).then(data => {
+        console.log('Data: ',data)
+        data => setData(data)
+      }
+      )
+    return(
+      <>
+
+      </>
+    )
+  }
 }
