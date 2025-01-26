@@ -1,23 +1,17 @@
 // App.jsx
-import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import StartPage from "./components/Start.jsx";
 import WeatherPage from "./components/Weather.jsx";
 
 function App() {
-  const [showWeatherPage, setShowWeatherPage] = useState(false);
-  const [city, setCity] = useState(''); // State to hold the city name
-
-  function updateWeatherPage() {
-    setShowWeatherPage(!showWeatherPage);
-  }
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600">
-      {showWeatherPage ? (
-        <WeatherPage city={city} /> 
-      ) : (
-        <StartPage updateWeatherPage={updateWeatherPage} setCity={setCity} /> 
-      )}
+    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white">
+      <Router>
+        <Routes>
+          <Route path="/" element={<StartPage />} />
+          <Route path="/weather" element={<WeatherPage />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
